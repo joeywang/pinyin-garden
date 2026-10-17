@@ -1,0 +1,117 @@
+/* Light colours are preserved as exact fallbacks; dark colours are role-specific. */
+:root{color-scheme:light;}
+:root[data-theme="dark"]{color-scheme:dark;background:#19221f;
+--edge-997039:#554b4d;
+--edge-9ab086:#435347;
+--edge-9ab184:#435347;
+--edge-9eb887:#435347;
+--edge-adc298:#435347;
+--edge-b6c99b:#435347;
+--edge-bccda7:#435347;
+--edge-c5cfb8:#435347;
+--edge-cfc3d5:#554b4d;
+--edge-d6ab87:#554b4d;
+--edge-d7ddce:#435347;
+--edge-d7e1bd:#435347;
+--edge-d9dfcb:#435347;
+--edge-dcd5e9:#554b4d;
+--edge-dce2d0:#435347;
+--edge-dce3cc:#435347;
+--edge-dce3cf:#435347;
+--edge-dde4d2:#435347;
+--edge-e0d9e4:#554b4d;
+--edge-e0e1cf:#435347;
+--edge-e0e4d5:#435347;
+--edge-e0e5d5:#435347;
+--edge-e1e5d3:#435347;
+--edge-e1e5d6:#435347;
+--edge-e6e9db:#435347;
+--edge-ebd0c3:#554b4d;
+--edge-ecdcba:#435347;
+--shadow-284d37:#101713;
+--shadow-e4e8d7:#101713;
+--shadow-e6e9da:#101713;
+--shadow-e9ecdc:#101713;
+--shadow-ebecdf:#101713;
+--surface-2c533a:#2c533a;
+--surface-718d54:#718d54;
+--surface-96af74:#96af74;
+--surface-dfe8cf:#29362e;
+--surface-e1e9cf:#29362e;
+--surface-e3dae9:#322e3b;
+--surface-e4edda:#29362e;
+--surface-e5e9da:#29362e;
+--surface-e6ebd9:#29362e;
+--surface-e7eddd:#29362e;
+--surface-e8efda:#29362e;
+--surface-eaf0dd:#29362e;
+--surface-eaf0de:#29362e;
+--surface-edeaf5:#322e3b;
+--surface-edf0e1:#29362e;
+--surface-edf0e2:#29362e;
+--surface-eee9f1:#322e3b;
+--surface-eef3e0:#29362e;
+--surface-eff3e4:#29362e;
+--surface-f0eee1:#383426;
+--surface-f0f3e4:#29362e;
+--surface-f1efdf:#383426;
+--surface-f1f5e8:#29362e;
+--surface-f2f0e4:#383426;
+--surface-f8f7ef:#242e29;
+--surface-f9e8e0:#3c302c;
+--surface-f9eed9:#383426;
+--surface-faf9f0:#242e29;
+--surface-fcf9fd:#242e29;
+--surface-fff:#242e29;
+--surface-fff1df:#3c302c;
+--surface-fffdf5:#242e29;
+--surface-fffdf6:#242e29;
+--surface-fffdf7:#242e29;
+--text-2f4639:#e0e8dd;
+--text-365e42:#e0e8dd;
+--text-386549:#e0e8dd;
+--text-475f45:#e0e8dd;
+--text-56743f:#e0e8dd;
+--text-5a7450:#b4c6ad;
+--text-5c6855:#b4c6ad;
+--text-5c7351:#b4c6ad;
+--text-5c7554:#b4c6ad;
+--text-5c7d49:#b4c6ad;
+--text-5d7252:#b4c6ad;
+--text-617751:#b4c6ad;
+--text-62516b:#c8b6da;
+--text-65516f:#c8b6da;
+--text-678251:#b4c6ad;
+--text-687460:#b4c6ad;
+--text-6a7469:#b4c6ad;
+--text-6a7567:#b4c6ad;
+--text-718066:#b4c6ad;
+--text-728264:#b4c6ad;
+--text-728563:#b4c6ad;
+--text-747f6a:#b4c6ad;
+--text-74806c:#b4c6ad;
+--text-756c79:#c8b6da;
+--text-775034:#ddb49d;
+--text-776095:#c8b6da;
+--text-78816f:#b4c6ad;
+--text-798364:#b4c6ad;
+--text-7a6583:#c8b6da;
+--text-936d2e:#dbc18d;
+--text-a2654e:#ddb49d;
+--text-fffdf5:#f1f2e9;
+}
+.appearance-bar{display:flex;justify-content:flex-end;padding:10px 0 0;}
+.theme-control{font:12px/1.5 system-ui,sans-serif;color:var(--muted);}
+.theme-control label{display:flex;align-items:center;gap:8px;}
+.theme-control select{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:18px;min-height:44px;padding:8px 12px;cursor:pointer;}
+.theme-control select:focus-visible{outline:3px solid #b58f52;outline-offset:3px;}
+.theme-control [role="status"]{display:block;max-width:280px;margin-top:6px;}
+:root[data-theme="dark"] .primary{background:#41644e;color:#f1f2e9;border-color:#729479;box-shadow:0 4px 0 #101713;}
+:root[data-theme="dark"] .primary:hover:not(:disabled){background:#4a7259;}
+:root[data-theme="dark"] .garden-art,:root[data-theme="dark"] .mountain-art{filter:brightness(.76) saturate(.75);}
+:root[data-theme="dark"] .brand-mark{background:#476c54;color:#f1f2e9;}
+:root[data-theme="dark"] .skip,:root[data-theme="dark"] .skip-link{background:#242e29;}
+:root[data-theme="dark"] input::placeholder{color:#aabca5;opacity:1;}
+:root[data-theme="dark"] :is(.nav-button.active,nav button.active,.group-tabs button.selected,.sound-tile.selected,.tone-select .selected,.lesson-tabs button.active,.game-settings button.selected){background:#344c3a;border-color:#7c9878;}
+:root[data-theme="dark"] :is(.path-card.recommended,.theme-card.next,.path-card.completed,.growth-chart button.grown){background:#2e4032;border-color:#76926f;}
+@media(max-width:760px){.theme-control{font-size:11px;}.appearance-bar{padding-top:8px;}}

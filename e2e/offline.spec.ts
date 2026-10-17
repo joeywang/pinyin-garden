@@ -1,0 +1,27 @@
+import {test,expect} from '@playwright/test';
+import {pathToFileURL} from 'node:url';
+import path from 'node:path';
+test('single-file download works without a server or network, with real audio and attribution',async({page,context})=>{
+ await context.setOffline(true);
+ const errors:string[]=[];const remoteRequests:string[]=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ page.on('request',r=>{if(/^https?:/.test(r.url()))remoteRequests.push(r.url());});
+ await page.goto(pathToFileURL(path.resolve('deliverables/Pinyin-Garden.html')).href);
+ await expect(page.getByRole('button',{name:'Start first lesson'})).toBeVisible();
+ await page.getByRole('combobox',{name:'Colour theme'}).selectOption('dark');
+ await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+ await page.evaluate(()=>{const OldAudio=window.Audio;(window as any).__audio=null;window.Audio=class extends OldAudio{constructor(src?:string){super(src);(window as any).__audio=this;}};});
+ await page.getByRole('button',{name:'Start first lesson'}).click();
+ await page.getByRole('button',{name:'Hear this sound'}).click();
+ await expect.poll(()=>page.evaluate(()=>{const a=(window as any).__audio;return a?.currentTime>0&&a.duration>0&&!a.error&&a.src.startsWith('data:audio/mpeg;base64,');})).toBe(true);
+ await page.getByRole('button',{name:'Sound chart',exact:true}).click();
+ await page.getByRole('button',{name:'Nose sounds',exact:true}).click();
+ await page.getByRole('button',{name:'Hear ün',exact:true}).click();
+ await expect(page.getByText('Recorded example:')).toContainText('yūn');
+ await page.getByRole('button',{name:'For grown-ups'}).click();
+ const manifest=page.getByRole('link',{name:'View recording sources & checksums ↗'});
+ await expect(manifest).toHaveAttribute('href',/^blob:/);
+ const payload=await manifest.evaluate(async el=>await (await fetch((el as HTMLAnchorElement).href)).json());
+ expect(payload.files.length).toBe(188);
+ expect(remoteRequests).toEqual([]);expect(errors).toEqual([]);
+});

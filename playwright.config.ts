@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'./e2e',workers:1,use:{colorScheme:process.env.TEST_COLOR_SCHEME==='dark'?'dark':'light',baseURL:'http://127.0.0.1:4178',launchOptions:{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}},webServer:{command:'npm run preview -- --port 4178 --strictPort',url:'http://127.0.0.1:4178',reuseExistingServer:false}});
