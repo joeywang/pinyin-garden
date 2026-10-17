@@ -36,6 +36,12 @@ Playwright automatically starts an isolated local preview server. Set `PLAYWRIGH
 
 Recordings are unmodified syllables by Chen Wang, from `hugolpz/audio-cmn`. Source manifests in `public/` include commit-pinned original URLs, attribution, byte counts and SHA-256 hashes. Original attribution is preserved in `public/credits/`. Asset-fetch scripts under `scripts/` download the originals from upstream.
 
+## Interest-led sound missions for roughly ages 8–10
+
+Two additional five-question listening missions are available under **Sound missions**: spelling detective (choose the spelling of a recorded syllable) and tone twins (compare two recordings). Each question bank has twelve entries; a session selects five. Spelling distractors share the target's tone, so the game exercises the whole syllable rather than just tone-mark matching.
+
+Choices unlock only after the relevant recording(s) finish; failed playback, cancelled rounds and stale callbacks cannot unlock answers. Corrected retries are welcome, with no timer or score penalty. Completion badges mark explored mission types, not pronunciation mastery. New records are stored separately from existing lesson progress, and the parent reset clears them. Browser tests complete both missions with real MP3 playback and exercise recovery, mobile/dark layouts and the regenerated offline export.
+
 ## Learning limitations
 
 This is introductory learning material, not a complete official Mandarin/primary-school curriculum or an official textbook mapping. Adult guidance is recommended. Isolated-character citation pronunciations do not teach all contextual neutral tones or tone-sandhi rules; screen tracing does not replace pencil-and-paper practice.

@@ -23,5 +23,10 @@ test('single-file download works without a server or network, with real audio an
  await expect(manifest).toHaveAttribute('href',/^blob:/);
  const payload=await manifest.evaluate(async el=>await (await fetch((el as HTMLAnchorElement).href)).json());
  expect(payload.files.length).toBe(188);
+ await page.getByRole('button',{name:'Sound missions',exact:true}).click();
+ await page.getByRole('button',{name:'Start spelling detective'}).click();
+ await page.getByRole('button',{name:'Play mystery syllable'}).click();
+ await expect(page.getByRole('button',{name:/^Spelling choice:/}).first()).toBeEnabled();
+ expect(await page.evaluate(()=>(window as any).__audio.src.startsWith('data:audio/mpeg;base64,'))).toBe(true);
  expect(remoteRequests).toEqual([]);expect(errors).toEqual([]);
 });

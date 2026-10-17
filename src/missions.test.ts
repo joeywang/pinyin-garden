@@ -1,0 +1,4 @@
+import {it,expect} from 'vitest';import manifest from '../public/audio-manifest.json';import {spellingMissions,twinMissions} from './missions';
+it('uses only existing recorded audio and unambiguous choices',()=>{const names=new Set(manifest.files.map(f=>f.file));expect(spellingMissions.length).toBeGreaterThanOrEqual(10);expect(twinMissions.length).toBeGreaterThanOrEqual(10);for(const p of spellingMissions){expect(names.has(`${p.sample}${p.tone}.mp3`)).toBe(true);expect(p.distractors).not.toContain(p.sample);expect(new Set(p.distractors).size).toBe(2);}for(const p of twinMissions){expect(names.has(`${p.sample}${p.a}.mp3`)).toBe(true);expect(names.has(`${p.sample}${p.b}.mp3`)).toBe(true);}});
+
+it('uses twelve distinct targets and plausible distractors from the same bank',()=>{const samples=new Set(spellingMissions.map(q=>q.sample));expect(samples.size).toBe(12);for(const q of spellingMissions)for(const d of q.distractors)expect(samples.has(d)).toBe(true);});
