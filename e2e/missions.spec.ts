@@ -33,3 +33,11 @@ test('failed recordings, round cancellation and theme switching keep gates hones
  for(const mode of ['light','dark']){await page.getByRole('combobox',{name:'Colour theme'}).selectOption(mode);for(const width of [360,390,768,1440]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}await page.screenshot({path:`screenshots/sound-missions-${mode}.png`,fullPage:true});}
  expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!),storageKey)).toEqual({completed:[],toneRounds:0});
 });
+
+test('a parent reset is reflected by another open mission tab',async({page,context})=>{
+ await page.goto('/');await page.getByRole('button',{name:'Sound missions',exact:true}).click();
+ const other=await context.newPage();await other.goto('/');await other.evaluate(()=>localStorage.setItem('pinyin-missions-v1','["spelling"]'));
+ await expect(page.getByText(/Explored: 1 \/ 2/)).toBeVisible();
+ await other.getByRole('button',{name:'For grown-ups'}).click();other.once('dialog',dialog=>dialog.accept());await other.getByRole('button',{name:'Reset this device’s garden',exact:true}).click();
+ await expect(page.getByText(/Explored: 0 \/ 2/)).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('pinyin-missions-v1'))).toBeNull();await other.close();
+});
